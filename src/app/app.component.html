@@ -1,0 +1,214 @@
+
+<div style="text-align:center">
+
+  <h3 style="color:blue"> Registration Form(Teamplatedriven) </h3>
+</div>
+<form name="form" (ngSubmit)="Form.invalid && onSubmit()" #f="ngForm" novalidat>
+  <table align=center>
+    <tr>
+      <td>First Name :</td>
+      <td>Last Name :</td>
+    </tr>
+    <tr>
+      <td><input id="fname" name="fname" class="form-control" 
+        required [(ngModel)]="fullname" #fname="ngModel"></td>
+      <td><input id="lname" name="lname" class="form-control" 
+        required [(ngModel)]="lastname" #lname="ngModel"></td>
+    </tr>
+
+
+    <tr>
+      <td class=a>
+        <div *ngIf="fname.invalid && (fname.dirty || fname.touched)">
+          <div *ngIf="fname.errors.required">
+            Name is required.
+          </div>
+        </div>
+      </td>
+
+      <td class=a>
+        <div *ngIf="lname.invalid && (lname.dirty || lname.touched)">
+          <div *ngIf="lname.errors.required">
+            Last name is required. </div>
+       </div>
+      </td>
+    </tr>
+
+      <!-- email and date of birth -->
+
+    <tr>
+      <td>Email :</td>
+      <td>Date of Birth : </td>
+    </tr>
+    <tr>
+      <td> <input id="email" name="email" class="form-control" required
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="Email" #email="ngModel"> </td>
+      <td> <input type="date" id="dob" name="dob" class="form-control"
+         required [(ngModel)]="date" #dob="ngModel"> </td>
+    </tr>
+     <tr>
+        <td class=a ><div *ngIf="email.invalid && (email.dirty ||  email.touched)"> 
+          <div *ngIf="email.errors.required">
+            Eamil is required.
+          </div>
+          <div *ngIf="email.errors.pattern">
+            Invalid Email.
+
+          </div>
+      </div></td>
+         <td class=a>
+            <div *ngIf="dob.invalid && (dob.dirty ||  dob.touched)"> 
+                <div *ngIf="dob.errors.required">
+                  Date of Birth is required.
+                </div>
+          </div>
+        </td>
+      </tr>
+
+        <!-- gender -->
+
+      <tr>
+        <td>Gender:</td>
+    
+      
+      <td>male<input type="radio" name="gender" value="male" class="form-control"
+        required [(ngModel)]="ggender" #gender='ngModel'>&nbsp; <br>
+        female<input type="radio" name="gender" value="female" class="form-control"
+        required [(ngModel)]="ggender" #gender='ngModel'>
+        </td>
+
+    </tr>
+    <tr><td></td>
+      <td>
+        <div *ngIf="gender.invalid && (gender.dirty || gender.touched)">
+          <div *ngIf="gender.errors.required">
+            please select gender
+          </div>
+        </div>
+      </td>
+    </tr>
+
+
+        <!-- mobile number and address -->
+
+
+   <tr>
+      <td>Mobile Number:</td>
+      <td>Address:</td>
+    </tr>
+    <tr>
+      <td><input id="phone" name="phone" class="form-control" 
+        required minlength="10" [(ngModel)]="phno" #phone="ngModel" onkeypress="return (event.charCode >= 48 && event.charCode <= 57) "></td>
+      <td><textarea rows="4" cols="25" name="address" class="form-control" 
+        required [(ngModel)]="add" #address="ngModel"></textarea></td>
+    </tr>
+
+
+    <tr>
+      <td class=a>
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+          <div *ngIf="phone.errors.required">
+            phone number is required.
+          </div>
+          <div *ngIf="phone.errors.minlength">
+              phone number must 10 digits.
+            </div>
+        </div>
+      </td>
+
+      <td class=a>
+        <div *ngIf="address.invalid && (address.dirty || address.touched)">
+          <div *ngIf="address.errors.required">
+            address is required. </div>
+        </div>
+
+      </td>
+
+    </tr>
+
+      <!-- college and branch -->
+   
+    <tr>
+      <td>College</td>
+      <td>Branch</td>
+    </tr>
+    <tr>
+      <td><select id="select" value="-1" name="select" class="form-control"
+      required [(ngModel)]="clg" #select="ngModel">
+      <option disabled selected value="-1">--select College--</option>
+    <option >Srinivasa Engineering college</option>
+    <option >BVC Engineering college</option>
+    <option >Raghu Engineering college</option>
+  
+    </select></td>
+    <td><select id="selectb" value="-1" name="selectb" class="form-control"
+      required [(ngModel)]="dep" #selectb="ngModel">
+      <option disabled selectedvalue="-1">--select branch--</option>
+    <option>EEE</option>
+    <option>ECE</option>
+    <option>CSE</option>
+  
+    </select></td>
+
+    </tr>
+    <tr><td>
+      <div *ngIf="select.invalid && (select.touched)">
+        <div *ngIf="select.errors.required">
+          please select college
+        </div>
+      </div></td>
+      <td>
+          <div *ngIf="selectb.invalid && (selectb.touched)">
+              <div *ngIf="selectb.errors.required">
+                please select branch
+              </div>
+            </div>
+        
+      </td>        
+    </tr>
+
+     
+
+
+
+
+  </table>
+  <button class="bt"(click)="submit(f)" type="submit" 
+  [disabled]="f.form.pristine || f.form.invalid">Submit</button>
+
+</form>
+
+
+
+<table>
+  <tr>
+    Frist Name:<td>{{b.fname}}</td>
+  </tr>
+  <tr>
+    Last Name:<td>{{b.lname}}</td>
+  </tr>
+  <tr>
+    Email:<td>{{b.email}}</td>
+  </tr>
+  <tr>
+    Date of Birth:<td>{{b.dob}}</td>
+  </tr>
+  <tr>
+    gender<td>{{b.gender}}</td>
+  </tr>
+  <tr>
+    Mobile No.:<td>{{b.phone}}</td>
+  </tr>
+  <tr>
+    Address:<td>{{b.address}}</td>
+  </tr>
+  
+  <tr>
+    college:<td>{{b.select}}</td>
+  </tr>
+  <tr>
+    branch:<td>{{b.selectb}}</td>
+  </tr>
+</table>
+
+<router-outlet></router-outlet>
